@@ -14,9 +14,8 @@
 
 int main()
 {
-	mkfifo missionIn;// interfaces to mission
-	mkfifo missionout; // mission to interfaces
-	//open as file
-	//read  
-	FILE	
-}
+	File * in;
+	string input;
+	in = // your FIfo stuff
+	fscanf(in,"%s", input); 
+} 
