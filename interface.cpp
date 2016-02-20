@@ -8,8 +8,15 @@
 
 */
 
+#include <iostream>
+#include <stdio>
+
 
 int main()
 {
-	cin >>
+	mkfifo missionIn;// interfaces to mission
+	mkfifo missionout; // mission to interfaces
+	//open as file
+	//read  
+	FILE	
 }
