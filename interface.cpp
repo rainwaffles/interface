@@ -1,13 +1,3 @@
-/*
-
-.___        __                 _____                            
-|   | _____/  |_  ____________/ ____\____    ____  ____   ______
-|   |/    \   __\/ __ \_  __ \   __\\__  \ _/ ___\/ __ \ /  ___/
-|   |   |  \  | \  ___/|  | \/|  |   / __ \\  \__\  ___/ \___ \
-|___|___|  /__|  \___  >__|   |__|  (____  /\___  >___  >____  >
-
-*/
-
 #include <stdio.h>
 
 int main()
@@ -21,13 +11,50 @@ int main()
 	mission_out = fopen("./missionout","r");
 	mission_in = fopen("./missionin", "w");
 	quit = false;
-	while (!quit) {
+	while (!quit) 
+	{
 		fscanf(mission_out, "%c", &input_message);
-		switch (input_message) {
-			case 'c': //stuff 
+		switch (input_message)
+		{
+		case 'c':
+			fscanf(mission_out, "%c", &input_type);
+			switch (input_type)
+			{
+			case 's':
+				//stuff
 				break;
-			case 'q': //stuff
+			case 'd':
+				//stuff
 				break;
+			case 't':
+				//stuff
+				break;
+			case 'g':
+				//stuff
+				break;
+			}
+			break;
+		case 'q':
+			fscanf(mission_out, "%c", &input_type);
+			switch(input_type)
+			{
+			case 's':
+				//stuff
+				break;
+			case 'i':
+				//stuff
+				break;
+			case 'v':
+				//stuff
+				break;
+			case 'u':
+				//stuff
+				break;
+			case 'm':
+				//stuff
+				break;
+			}
+			break;
 		}
 	}
 
