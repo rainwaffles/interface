@@ -55,7 +55,7 @@ int main()
 				float value;
 				fscanf(mission_in, "%c", &task);
 				fprintf(vision_out, "%c", task);
-				fscanf(vision_in, "%i", &
+				fscanf(vision_in, "%i", &num_values);
 				for (int i = 0; i < num_values; i++) {
 					fscanf(vision_in, "%f", &value);
 					fprintf(mission_out, "%f", value);
