@@ -4,12 +4,17 @@ int main()
 {
 	FILE* mission_out;  //read from mission
 	FILE* mission_in;   //write to mission
+
+	FILE* vision_out;    //read from image microprocessor
+	FILE* vision_in;     //write to image microprocessor
+
 	char input_message, input_type;
-	char* input_args;
 	bool quit;
 
-	mission_out = fopen("./missionout","r");
-	mission_in = fopen("./missionin", "w");
+	mission_out = fopen("./missionout", "r");
+	mission_in  = fopen("./missionin", "w");
+	vision_out  = fopen("./visionout", "r");
+	vision_in   = fopen("./visionin", "w");
 	quit = false;
 	while (!quit) 
 	{
@@ -45,7 +50,14 @@ int main()
 				//stuff
 				break;
 			case 'v':
-				//stuff
+				char task;
+				int num_values;
+				float value;
+				fscanf(vision_out, "%c %i", &task, &num_values);
+				for (int i = 0; i < num_values; i++) {
+					fscanf(vision_out, "%f", &value);
+					fprintf(mission_in, "%f", value);
+				}
 				break;
 			case 'u':
 				//stuff
