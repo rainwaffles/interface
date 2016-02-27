@@ -2,27 +2,27 @@
 
 int main()
 {
-	FILE* mission_out;  //read from mission
-	FILE* mission_in;   //write to mission
+	FILE* mission_in;   //read from mission
+	FILE* mission_out;  //write to mission
 
-	FILE* vision_out;    //read from image microprocessor
-	FILE* vision_in;     //write to image microprocessor
+	FILE* vision_in;    //read from image microprocessor
+	FILE* vision_out;   //write to image microprocessor
 
 	char input_message, input_type;
 	bool quit;
 
-	mission_out = fopen("./missionout", "r");
-	mission_in  = fopen("./missionin", "w");
-	vision_out  = fopen("./visionout", "r");
-	vision_in   = fopen("./visionin", "w");
+	mission_in  = fopen("./missionin",  "r");
+	mission_out = fopen("./missionout", "w");
+	vision_in   = fopen("./visionin",   "r");
+	vision_out  = fopen("./visionout",  "w");
 	quit = false;
 	while (!quit) 
 	{
-		fscanf(mission_out, "%c", &input_message);
+		fscanf(mission_in, "%c", &input_message);
 		switch (input_message)
 		{
 		case 'c':
-			fscanf(mission_out, "%c", &input_type);
+			fscanf(mission_in, "%c", &input_type);
 			switch (input_type)
 			{
 			case 's':
@@ -40,7 +40,7 @@ int main()
 			}
 			break;
 		case 'q':
-			fscanf(mission_out, "%c", &input_type);
+			fscanf(mission_in, "%c", &input_type);
 			switch(input_type)
 			{
 			case 's':
@@ -53,10 +53,12 @@ int main()
 				char task;
 				int num_values;
 				float value;
-				fscanf(vision_out, "%c %i", &task, &num_values);
+				fscanf(mission_in, "%c", &task);
+				fprintf(vision_out, "%c", task);
+				fscanf(vision_in, "%i", &
 				for (int i = 0; i < num_values; i++) {
-					fscanf(vision_out, "%f", &value);
-					fprintf(mission_in, "%f", value);
+					fscanf(vision_in, "%f", &value);
+					fprintf(mission_out, "%f", value);
 				}
 				break;
 			case 'u':
