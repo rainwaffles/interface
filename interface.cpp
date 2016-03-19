@@ -8,28 +8,53 @@ int main()
 	//mission
 	FILE* mission_in;
 	FILE* mission_out;
-
 	//state
 	//used for both command and query
 	FILE* state_in;
 	FILE* state_out;
-	//image microprocessor
+	//dropper
+	FILE* dropper_in;
+	FILE* dropper_out;
+	//torpedo
+	FILE* torpedo_in;
+	FILE* torpedo_out;
+	//grabber
+	FILE* grabber_in;
+	FILE* grabber_out;
+	//image
+	FILE* image_in;
+	FILE* image_out; 
+	//image microprocessor=vision
 	FILE* vision_in;
 	FILE* vision_out;
-
 	//ultrasonic
 	FILE* usonic_in;    
 	FILE* usonic_out;
+	//modeling
+	FILE* modeling_in;
+ 	FILE* modeling_out; 
 
 	char input_message, input_type; //from mission_in
 	bool quit;
 
-	mission_in  = fopen("./missionin",  "r");
-	mission_out = fopen("./missionout", "w");
-	vision_in   = fopen("./visionin",   "r");
-	vision_out  = fopen("./visionout",  "w");
-	usonic_in   = fopen("./usonicin",   "r");
-	usonic_out  = fopen("./usonicout",  "w");
+	mission_in   = fopen("./missionin",   "r");
+	mission_out  = fopen("./missionout",  "w");
+	state_in     = fopen("./statein",     "r");
+	state_out    = fopen("./stateout",    "w");
+	dropper_in   = fopen("./dropperin",   "r");
+	dropper_out  = fopen("./dropperout",  "w");
+	torpedo_in   = fopen("./torpedoin",   "r");
+	torpedo_out  = fopen("./torpedoout",  "w");
+	grabber_in   = fopen("./grabberin",   "r");
+	grabber_out  = fopen("./grabberout",  "w");
+	image_in     = fopen("./imagein",     "r");
+	image_out    = fopen("./imageout",    "w"); 
+	vision_in    = fopen("./visionin",    "r");
+	vision_out   = fopen("./visionout",   "w");
+	usonic_in    = fopen("./usonicin",    "r");
+	usonic_out   = fopen("./usonicout",   "w");
+	modeling_in  = fopen("./modelingin",  "r");
+	modeling_out = fopen("./modelingout", "w");
 
 	quit = false;
 	while (!quit) 
@@ -52,15 +77,22 @@ int main()
 				break;
 			//drop
 			case 'd':
-				//stuff
+				//send 'c' to indicate command
+				fprintf(dropper_out, "%c", 'd');
 				break;
 			//shoot torpedo
 			case 't':
-				//stuff
+				char direction;
+				fscanf(mission_in, "%c", &direction);
+				//direction is either l for left or r for right
+				fprintf(torpedo_out, "%c", direction);
 				break;
 			//grabber
 			case 'g':
-				//stuff
+				char command;
+				fscanf(mission_in, "%c", &command);
+				//command is either g for grab or r for release
+				fprintf(grabber_out, "%c", command);
 				break;
 			}
 			break;
@@ -71,6 +103,8 @@ int main()
 			{
 			//state
 			case 's':
+				//return yaw, pitch, roll, depth, x, y
+
 				float yaw, pitch, roll, depth, x, y;
 				//send 'q' to indicate query
 				fprintf(state_out, "%c", 'q');
@@ -81,7 +115,7 @@ int main()
 			case 'i':
 				//stuff
 				break;
-			//vision
+			//image microprocessor=vision
 			case 'v':	
 				//return a bunch of values
 
