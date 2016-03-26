@@ -113,7 +113,21 @@ int main()
 				break;
 			//image
 			case 'i':
-				//stuff
+				//return rows, cols, and bytes
+
+				char direction;
+				float res_scale, vert_crop, horiz_crop;
+				int rows, cols;
+				char byte;
+				fscanf(mission_in, "%c %f %f %f", &direction, &res_scale, &vert_crop, &horiz_crop);
+				//direction is either f for front or d for down
+				fprintf(image_out, "%c %f %f %f", direction, res_scale, vert_crop, horiz_crop);
+				fscanf(image_in, "%i %i", &rows, &cols);
+				fprintf(mission_out, "%i %i", rows, cols);
+				for (int i = 0; i < rows*cols; i++) {
+					fscanf(image_in, "%c", &byte);
+					fprintf(mission_out, "%c", byte);
+				}
 				break;
 			//image microprocessor=vision
 			case 'v':	
